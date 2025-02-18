@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private Button goToExercice1Button;
+    private Button goToExercice2Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
         goToExercice1Button = findViewById(R.id.Exercice1Button);
         goToExercice1Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice1Activity.class);
+            startActivity(intent);
+        });
+
+        goToExercice2Button = findViewById(R.id.exercice2Button);
+        goToExercice2Button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Exercice2Activity.class);
             startActivity(intent);
         });
 
