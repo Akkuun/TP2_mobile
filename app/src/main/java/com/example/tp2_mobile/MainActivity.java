@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button goToExercice2Button;
     private Button goToExercice3Button;
 
+    private Button goToExercice4Button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         goToExercice3Button = findViewById(R.id.exercice3Button);
         goToExercice3Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice3Activity.class);
+            startActivity(intent);
+        });
+
+        goToExercice4Button = findViewById(R.id.exercice4Button);
+        goToExercice4Button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Exercice4Activity.class);
             startActivity(intent);
         });
 
