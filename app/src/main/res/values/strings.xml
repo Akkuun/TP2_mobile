@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">TP2_mobile</string>
     <string name="Ex1">Go to Exercice 1</string>
+    <string name="Ex2">Go to Exercice 2</string>
+    <string name="Ex3">Go to Exercice 3</string>
+    <string name="Ex4">Go to Exercice 4</string>
     <string name="searchDevice">Search Device</string>
+    <string name="searchNonSensor">Search non available sensor</string>
 </resources>
