@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/Exercice1"
+            android:id="@+id/Exercice1Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Ex1"
