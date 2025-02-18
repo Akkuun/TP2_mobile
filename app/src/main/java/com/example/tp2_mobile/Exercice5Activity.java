@@ -39,7 +39,7 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
     private boolean isFlashOn = false;
     private Handler handler = new Handler(Looper.getMainLooper());
     private long lastFlashTime = 0;
-    private static final long FLASH_DELAY = 1000; // 2 seconds delay
+    private static final long FLASH_DELAY = 1000; // 1 seconds delay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
