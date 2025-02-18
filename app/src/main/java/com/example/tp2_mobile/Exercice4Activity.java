@@ -99,13 +99,6 @@ public class Exercice4Activity extends AppCompatActivity implements SensorEventL
                 } else if (x < -sensitivity) {
                     direction.setText("Left");
                 }
-            } else if (Math.abs(y) > Math.abs(x) && Math.abs(y) > Math.abs(z)) {
-                // Axe Y dominant
-                if (y > sensitivity) {
-                    direction.setText("Front");
-                } else if (y < -sensitivity) {
-                    direction.setText("Back");
-                }
             } else {
                 // Axe Z dominant
                 if (z > sensitivity) {
