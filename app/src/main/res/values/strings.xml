@@ -6,4 +6,6 @@
     <string name="Ex4">Go to Exercice 4</string>
     <string name="searchDevice">Search Device</string>
     <string name="searchNonSensor">Search non available sensor</string>
+    <string name="actualValue">Actual Accelerometer value :</string>
+    <string name="accelerometerSensibility">Accelerometer Sensibility</string>
 </resources>

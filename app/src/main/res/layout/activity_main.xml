@@ -12,16 +12,28 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/Exercice1Button"
+            android:id="@+id/exercice3Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Ex3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.469" />
+
+        <Button
+            android:id="@+id/exercice1Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Ex1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintBottom_toTopOf="@+id/exercice3Button"
+            app:layout_constraintEnd_toStartOf="@+id/exercice2Button"
+            app:layout_constraintHorizontal_bias="0.427"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.089" />
+            app:layout_constraintVertical_bias="0.224" />
 
         <Button
             android:id="@+id/exercice2Button"
@@ -30,8 +42,6 @@
             android:text="@string/Ex2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.938"
-            app:layout_constraintStart_toEndOf="@+id/Exercice1Button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.089" />
     </androidx.constraintlayout.widget.ConstraintLayout>

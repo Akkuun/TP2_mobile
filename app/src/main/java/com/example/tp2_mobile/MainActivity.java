@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button goToExercice1Button;
     private Button goToExercice2Button;
+    private Button goToExercice3Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        goToExercice1Button = findViewById(R.id.Exercice1Button);
+        goToExercice1Button = findViewById(R.id.exercice1Button);
         goToExercice1Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice1Activity.class);
             startActivity(intent);
@@ -34,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         goToExercice2Button = findViewById(R.id.exercice2Button);
         goToExercice2Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice2Activity.class);
+            startActivity(intent);
+        });
+
+        goToExercice3Button = findViewById(R.id.exercice3Button);
+        goToExercice3Button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Exercice3Activity.class);
             startActivity(intent);
         });
 
