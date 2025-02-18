@@ -4,6 +4,12 @@
     <string name="Ex2">Go to Exercice 2</string>
     <string name="Ex3">Go to Exercice 3</string>
     <string name="Ex4">Go to Exercice 4</string>
+    <string name="Ex5">Go to Exercice 5</string>
+    <string name="Ex6">Go to Exercice 6</string>
+    <string name="Ex7">Go to Exercice 7</string>
+    <string name="Ex8">Go to Exercice 8</string>
+    <string name="Ex9">Go to Exercice 9</string>
+    <string name="Ex10">Go to Exercice 10</string>
     <string name="searchDevice">Search Device</string>
     <string name="searchNonSensor">Search non available sensor</string>
     <string name="actualValue">Actual Accelerometer value :</string>
@@ -15,4 +21,5 @@
     <string name="NoDirection">Actual direction : No direction</string>
     <string name="Front">Actual direction : Front</string>
     <string name="Back">Actual direction : Back</string>
+    <string name="Shake">Shake for Turn On the FlashLight !</string>
 </resources>

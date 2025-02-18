@@ -24,6 +24,18 @@
             app:layout_constraintVertical_bias="0.469" />
 
         <Button
+            android:id="@+id/exercice5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Ex5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercice3Button"
+            app:layout_constraintVertical_bias="0.184" />
+
+        <Button
             android:id="@+id/exercice4Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
