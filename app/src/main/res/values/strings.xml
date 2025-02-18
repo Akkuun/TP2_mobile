@@ -8,4 +8,11 @@
     <string name="searchNonSensor">Search non available sensor</string>
     <string name="actualValue">Actual Accelerometer value :</string>
     <string name="accelerometerSensibility">Accelerometer Sensibility</string>
+    <string name="Up">Actual direction : Up</string>
+    <string name="Down">Actual direction : Down</string>
+    <string name="Left">Actual direction : Left</string>
+    <string name="Right">Actual direction : Right</string>
+    <string name="NoDirection">Actual direction : No direction</string>
+    <string name="Front">Actual direction : Front</string>
+    <string name="Back">Actual direction : Back</string>
 </resources>
