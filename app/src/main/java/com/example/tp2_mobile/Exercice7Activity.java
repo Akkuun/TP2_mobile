@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.List;
 
-public class Exercice6Activity extends AppCompatActivity {
+public class Exercice7Activity extends AppCompatActivity {
 
     private Button searchDeviceButton;
     private ScrollView scrollView;
@@ -25,7 +25,7 @@ public class Exercice6Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.exercice6);
+        setContentView(R.layout.exercice7);
 
         searchDeviceButton = findViewById(R.id.button2);
         scrollView = findViewById(R.id.viewDevice);

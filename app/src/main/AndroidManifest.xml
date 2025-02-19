@@ -39,7 +39,7 @@
         <activity android:name=".Exercice5Activity"
             android:exported="true">
         </activity>
-        <activity android:name=".Exercice6Activity"
+        <activity android:name=".Exercice7Activity"
             android:exported="true">
         </activity>
     </application>
