@@ -1,25 +1,27 @@
 package com.example.tp2_mobile;
 
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
+import android.content.pm.PackageManager;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.Manifest;
 
-import java.util.List;
 
 public class Exercice7Activity extends AppCompatActivity {
 
-    private Button searchDeviceButton;
-    private ScrollView scrollView;
-    private TextView textView;
+    private Button refreshPosition;
+
+
+    private TextView positionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,8 @@ public class Exercice7Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.exercice7);
 
-        searchDeviceButton = findViewById(R.id.button2);
-        scrollView = findViewById(R.id.viewDevice);
-        textView = findViewById(R.id.textView);
+        refreshPosition = findViewById(R.id.button2);
+        positionTextView = findViewById(R.id.position);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -37,18 +38,49 @@ public class Exercice7Activity extends AppCompatActivity {
             return insets;
         });
 
-        // When we click on our button, we display in the scroll view all the sensors available on the phone
-        searchDeviceButton.setOnClickListener(v -> {
-            SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-            List<Sensor> deviceSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        // Get the user's position when the page loads
+        getUserPosition();
 
-            StringBuilder sensorInfo = new StringBuilder();
-            for (Sensor sensor : deviceSensors) {
-                sensorInfo.append(sensor.getName()).append("\n");
-            }
-            if (textView != null) {
-                textView.setText(sensorInfo.toString());
-            }
+        // When we click on our button, we refresh the position
+        refreshPosition.setOnClickListener(v -> {
+            getUserPosition();
         });
+
+    }
+    private void getUserPosition() {
+        // Use the location service of the phone
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        //if we don't have the permission, we ask for it
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            return;
+        }
+        // listen to the location changes
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(android.location.Location location) {
+                positionTextView.setText("Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                //no need to implement this method
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                //no need to implement this method
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                //no need to implement this method
+            }
+        };
+
+        //we laucnh the location updates
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+
+
     }
 }
