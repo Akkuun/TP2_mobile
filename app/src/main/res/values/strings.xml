@@ -22,4 +22,5 @@
     <string name="Front">Actual direction : Front</string>
     <string name="Back">Actual direction : Back</string>
     <string name="Shake">Shake for Turn On the FlashLight !</string>
+    <string name="refresh">Click to refresh position !</string>
 </resources>

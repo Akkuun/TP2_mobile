@@ -39,6 +39,9 @@
         <activity android:name=".Exercice5Activity"
             android:exported="true">
         </activity>
+        <activity android:name=".Exercice6Activity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
