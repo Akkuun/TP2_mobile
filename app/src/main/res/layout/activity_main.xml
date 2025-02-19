@@ -27,13 +27,13 @@
             android:id="@+id/exercice6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Ex6"
+            android:text="@string/Ex7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.903"
-            app:layout_constraintStart_toEndOf="@+id/exercice"
-            app:layout_constraintTop_toBottomOf="@+id/exercice4Button"
-            app:layout_constraintVertical_bias="0.184" />
+            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercice"
+            app:layout_constraintVertical_bias="0.143" />
 
         <Button
             android:id="@+id/exercice"
