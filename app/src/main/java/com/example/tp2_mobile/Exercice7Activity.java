@@ -30,7 +30,7 @@ public class Exercice7Activity extends AppCompatActivity {
         setContentView(R.layout.exercice7);
 
         refreshPosition = findViewById(R.id.button2);
-        positionTextView = findViewById(R.id.position);
+        positionTextView = findViewById(R.id.detection);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

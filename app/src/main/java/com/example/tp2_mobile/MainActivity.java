@@ -54,13 +54,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        goToExercice5Button = findViewById(R.id.exercice5);
+        goToExercice5Button = findViewById(R.id.exercice5Button);
         goToExercice5Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice5Activity.class);
             startActivity(intent);
         });
 
-        goToExercice6Button = findViewById(R.id.exercice6);
+        goToExercice5Button = findViewById(R.id.exercice6Button);
+        goToExercice5Button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Exercice6Activity.class);
+            startActivity(intent);
+        });
+
+        goToExercice6Button = findViewById(R.id.exercice7Button);
         goToExercice6Button.setOnClickListener(v -> {
             Intent intent = new Intent(this, Exercice7Activity.class);
             startActivity(intent);
