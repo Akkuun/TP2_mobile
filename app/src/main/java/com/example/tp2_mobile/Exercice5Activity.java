@@ -29,6 +29,7 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
     private Button searchDeviceButton;
     private ScrollView scrollView;
     private TextView textView;
+    private TextView flashStatus;
     private SensorManager sensorManager;
     private Sensor accelerometer;
 
@@ -52,7 +53,7 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
         seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10); // Set a maximum value for sensitivity
         seekBar.setProgress(10);
-
+        flashStatus = findViewById(R.id.flashStatus);
         accelerometerValue = findViewById(R.id.acceVal);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -70,7 +71,8 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
             // If the sensor is an accelerometer
             if (currentSensor.getType() == Sensor.TYPE_ACCELEROMETER) {
                 accelerometer = currentSensor;
-                sensorText.append("New sensor detected: \n");
+                sensorText.append("Accelerometer sensor detected ! \n");
+                sensorText.append("Accelerometer details: \n");
                 sensorText.append("Name: ").append(currentSensor.getName()).append("\n");
                 sensorText.append("Type: ").append(currentSensor.getType()).append("\n");
                 sensorText.append("Vendor: ").append(currentSensor.getVendor()).append("\n");
@@ -123,14 +125,17 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
             if (isFlashOn) {
                 cameraManager.setTorchMode(cameraId, false);
                 isFlashOn = false;
+                flashStatus.setText(""); // Clear the text
             } else {
                 cameraManager.setTorchMode(cameraId, true);
                 isFlashOn = true;
+                flashStatus.setText("Flash allumé !");
             }
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
