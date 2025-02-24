@@ -83,7 +83,7 @@ public class Exercice7Activity extends AppCompatActivity {
             }
         };
 
-        //we laucnh the location updates
+        //we lauch the location updates
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
 
 
