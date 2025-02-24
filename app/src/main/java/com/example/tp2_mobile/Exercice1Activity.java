@@ -44,7 +44,7 @@ public class Exercice1Activity extends AppCompatActivity {
 
             StringBuilder sensorInfo = new StringBuilder();
             for (Sensor sensor : deviceSensors) {
-                sensorInfo.append(sensor.getName()).append("\n");
+                sensorInfo.append(sensor.getStringType()).append("\n");
             }
             if (textView != null) {
                 textView.setText(sensorInfo.toString());
