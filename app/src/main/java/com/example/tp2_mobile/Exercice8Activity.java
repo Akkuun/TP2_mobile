@@ -26,17 +26,20 @@ public class Exercice8Activity extends AppCompatActivity {
 
         // Créer une liste de pays
         List<Country> countries = new ArrayList<>();
-        countries.add(new Country("France"));
-        countries.add(new Country("Spain"));
-        countries.add(new Country("Germany"));
-        countries.add(new Country("Italy"));
-        countries.add(new Country("USA"));
+        countries.add(new Country("France", "flag_france", "Paris", 67000000));
+        countries.add(new Country("Spain", "flag_spain", "Madrid", 47000000));
+        countries.add(new Country("Germany", "flag_germany", "Berlin", 83000000));
+        countries.add(new Country("Italy", "flag_italy", "Rome", 60000000));
+        countries.add(new Country("USA", "flag_usa", "Washington", 328000000));
 
-        // Créer un adaptateur et l'associer à la RecyclerView
+        // adapter to display the countries in a recycler view
         CountryAdapter adapter = new CountryAdapter(countries, country -> {
-            // Lorsque le pays est cliqué, démarrer la deuxième activité avec les détails
+            // when a country is clicked, open the detail activity
             Intent intent = new Intent(Exercice8Activity.this, Exercice8Activity_detail.class);
-            intent.putExtra("country_name", country.getName()); // Passer le nom du pays
+            intent.putExtra("country_name", country.getName()); // pass country name to the next activity
+            intent.putExtra("country_flag", country.getFlag()); // pass country flag to the next activity
+            intent.putExtra("country_capital", country.getCapital()); // pass country capital to the next activity
+            intent.putExtra("country_population", country.getPopulation()); // pass country population to the next activity
             startActivity(intent);
         });
 
