@@ -38,7 +38,7 @@ public class Exercice7Activity extends AppCompatActivity {
             return insets;
         });
 
-        // Get the user's position when the page loads
+        // Get the user's position when the page loads to speed up the process
         getUserPosition();
 
         // When we click on our button, we refresh the position
