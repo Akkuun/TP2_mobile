@@ -125,11 +125,11 @@ public class Exercice5Activity extends AppCompatActivity implements SensorEventL
             if (isFlashOn) {
                 cameraManager.setTorchMode(cameraId, false);
                 isFlashOn = false;
-                flashStatus.setText(""); // Clear the text
+                flashStatus.setText("Flash Off ! ");
             } else {
                 cameraManager.setTorchMode(cameraId, true);
                 isFlashOn = true;
-                flashStatus.setText("Flash allumé !");
+                flashStatus.setText("Flash On  !");
             }
         } catch (CameraAccessException e) {
             e.printStackTrace();
