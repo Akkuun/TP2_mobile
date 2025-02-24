@@ -1,14 +1,10 @@
 package com.example.tp2_mobile;
 
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Debug;
-import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -18,22 +14,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.List;
-
 public class Exercice4Activity extends AppCompatActivity implements SensorEventListener {
-
 
     private TextView direction;
     private SensorManager sensorManager;
     private Sensor accelerometer;
-
     private TextView accelerometerValue;
     private SeekBar seekBar;
 
     private int sensitivity;
-
     private long lastUpdate = 0;
-    private static final int UPDATE_INTERVAL = 700; // milliseconds
+    private static final int UPDATE_INTERVAL = 700; // millisecondes
+    private static final float THRESHOLD = 0.5f; // Seuil minimum pour éviter les fausses détections
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +35,10 @@ public class Exercice4Activity extends AppCompatActivity implements SensorEventL
 
         direction = findViewById(R.id.direction);
         seekBar = findViewById(R.id.seekBar);
-        seekBar.setMax(100); // Set a maximum value for sensitivity
+        seekBar.setMax(100);
         seekBar.setProgress(50);
-
-
-
         accelerometerValue = findViewById(R.id.acceVal);
+        direction.setText("Move the phone to detect the direction");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -56,72 +46,62 @@ public class Exercice4Activity extends AppCompatActivity implements SensorEventL
             return insets;
         });
 
-        // Initialize SensorManager and get the accelerometer sensor
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        accelerometer = sensorManager.getSensorList(Sensor.TYPE_LINEAR_ACCELERATION).get(0);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
-        // Register the sensor listener for accelerometer
         if (accelerometer != null) {
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
         }
+
+        sensitivity = seekBar.getProgress(); // Initialisation correcte
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                sensitivity = progress; // change sensitivity
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
     }
 
+    //detect the direction of the phone
     @Override
     public void onSensorChanged(SensorEvent event) {
         long curTime = System.currentTimeMillis();
         if (curTime - lastUpdate < UPDATE_INTERVAL) {
-            return; // ne pas mettre à jour trop souvent
+            return;
         }
         lastUpdate = curTime;
 
-        // ONLY for accelerometer sensor
         if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-
-
-
-
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
-            // Calculate the magnitude of the acceleration
-            float magnitude = (float) Math.sqrt(x * x + y * y + z * z);
+
             accelerometerValue.setText(String.format("X: %.2f, Y: %.2f, Z: %.2f", x, y, z));
 
-            int sensitivity = seekBar.getProgress();
+            float adjustedSensitivity = sensitivity / 100.0f; // Normalisation de la sensibilité
 
-
-
-            // Déterminer la direction dominante en comparant les valeurs absolues
+            // compute dominant axe
             if (Math.abs(x) > Math.abs(y) && Math.abs(x) > Math.abs(z)) {
-                // Axe X dominant
-                if (x > sensitivity) {
-                    direction.setText("Right");
-                } else if (x < -sensitivity) {
-                    direction.setText("Left");
+                if (Math.abs(x) > adjustedSensitivity) {
+                    direction.setText(x > 0 ? "Right" : "Left");
                 }
             } else {
-                // Axe Z dominant
-                if (z > sensitivity) {
-                    direction.setText("Up");
-                } else if (z < -sensitivity) {
-                    direction.setText("Down");
+                if (Math.abs(z) > adjustedSensitivity) {
+                    direction.setText(z > 0 ? "Up" : "Down");
                 }
             }
-
-
-
-
-
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        //change sensibility of the sensor
-
-
-
-
+        // no need
     }
-
 }
