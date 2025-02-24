@@ -49,6 +49,9 @@
         <activity android:name=".Exercice8Activity"
             android:exported="true">
         </activity>
+        <activity android:name=".Exercice8Activity_detail"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
