@@ -25,7 +25,7 @@ public class CountriesListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_countries_list, container, false);
-
+        //get recyclerView et fill his content
         recyclerView = view.findViewById(R.id.recyclerView);
         List<Country> countries = new ArrayList<>();
         countries.add(new Country("France", "flag_france", "Paris", 67000000));
@@ -34,18 +34,21 @@ public class CountriesListFragment extends Fragment {
         countries.add(new Country("Germany", "flag_germany", "Berlin", 83000000));
         countries.add(new Country("USA", "flag_usa", "Washington", 328000000));
 
+        //add the adapter to the recyclerView
+        //and set the listener on the country click
         CountryAdapter adapter = new CountryAdapter(countries, country -> {
             if (listener != null) {
                 listener.onCountrySelected(country);
             }
         });
 
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         return view;
     }
-
+    //called when the fragment is attached to the activity
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

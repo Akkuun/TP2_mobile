@@ -13,7 +13,7 @@ public class Exercice8Activity extends AppCompatActivity implements CountriesLis
 
         if (findViewById(R.id.fragment_container) != null) {
             if (savedInstanceState == null) {
-                // Ajouter le fragment de la liste des pays
+                // add the fragment to the 'fragment_container' FrameLayout
                 CountriesListFragment countriesListFragment = new CountriesListFragment();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, countriesListFragment)
@@ -24,11 +24,11 @@ public class Exercice8Activity extends AppCompatActivity implements CountriesLis
 
     @Override
     public void onCountrySelected(Country country) {
-        // Afficher les détails du pays dans le fragment des détails
+        // print the country details  when a country is selected
         CountriesDetailFragment detailsFragment = CountriesDetailFragment.newInstance(country);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, detailsFragment)
-                .addToBackStack(null) // Ajouter à la pile arrière pour navigation
+                .addToBackStack(null)
                 .commit();
     }
 }
