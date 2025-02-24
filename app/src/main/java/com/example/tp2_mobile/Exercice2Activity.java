@@ -13,13 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Exercice2Activity extends AppCompatActivity {
 
     private Button searchDeviceButton;
-
-
     private ScrollView scrollView;
     private TextView textView;
 
@@ -40,34 +41,34 @@ public class Exercice2Activity extends AppCompatActivity {
         });
 
         searchDeviceButton.setOnClickListener(v -> {
+            // Get all available sensors from the device
             SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+            // Get all available sensors from the device
             List<Sensor> availableSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
-            String[] allPossibleSensors = {
-                    Sensor.STRING_TYPE_ACCELEROMETER,
-                    Sensor.STRING_TYPE_AMBIENT_TEMPERATURE,
-                    Sensor.STRING_TYPE_GRAVITY,
-                    Sensor.STRING_TYPE_GYROSCOPE,
-                    Sensor.STRING_TYPE_LIGHT,
-                    Sensor.STRING_TYPE_LINEAR_ACCELERATION,
-                    Sensor.STRING_TYPE_MAGNETIC_FIELD,
-                    Sensor.STRING_TYPE_PRESSURE,
-                    Sensor.STRING_TYPE_PROXIMITY,
-                    Sensor.STRING_TYPE_RELATIVE_HUMIDITY,
-                    Sensor.STRING_TYPE_ROTATION_VECTOR,
-                    Sensor.STRING_TYPE_TEMPERATURE
-            };
+            Set<String> availableSensorTypes = new HashSet<>();
+            for (Sensor sensor : availableSensors) {
+                availableSensorTypes.add(sensor.getStringType());
+            }
 
             StringBuilder sb = new StringBuilder();
-            for (String sensorType : allPossibleSensors) {
-                boolean isAvailable = false;
-                for (Sensor sensor : availableSensors) {
-                    if (sensor.getStringType().equals(sensorType)) {
-                        isAvailable = true;
-                        break;
+            //get all possible sensor type from the Sensor class
+            Field[] allPossibleSensorType = Sensor.class.getFields();
+            //we loop to find the sensor type that are not available on the device
+            for (Field typeSensor : allPossibleSensorType) {
+                //if the field name start with STRING_TYPE_ it's a sensor type
+                if (typeSensor.getName().startsWith("STRING_TYPE_")) {
+                    try {
+                        // Get the sensor type
+                        String sensorType = (String) typeSensor.get(null);
+                        // If the sensor type is not available on the device we put it in the string builder to display it
+                        if (!availableSensorTypes.contains(sensorType)) {
+                            sb.append(sensorType).append("\n");
+                        }
                     }
-                }
-                if (!isAvailable) {
-                    sb.append(sensorType).append("\n");
+                    // if the field is not accessible
+                    catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             textView.setText(sb.toString());
