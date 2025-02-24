@@ -50,10 +50,15 @@ public class Exercice7Activity extends AppCompatActivity {
     private void getUserPosition() {
         // Use the location service of the phone
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        //if we don't have the permission, we ask for it
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             return;
+        }
+
+// Get the last known location
+        android.location.Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (lastKnownLocation != null) {
+            positionTextView.setText("Latitude: " + lastKnownLocation.getLatitude() + "\nLongitude: " + lastKnownLocation.getLongitude());
         }
         // listen to the location changes
         LocationListener locationListener = new LocationListener() {
